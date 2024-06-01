@@ -9,7 +9,7 @@ const Footer = () => {
 
 <div className="md:w-4/5 w-full px-4 text-white flex flex-col">
 
-<div className="w-full text-7xl font-bold">
+<div className="w-full text-5xl font-bold">
 
 <h1 className="w-full md:w-4/5 hover:text-teal-200">Express Your Experiences
 

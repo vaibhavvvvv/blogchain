@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link'; 
 import Logo from '../components/shared/Logo';
 import Menu from '../components/shared/Menu';
+import ConnectButton from './shared/ConnectButton';
 
 interface MenuItem {
   label: string;
@@ -15,12 +16,12 @@ const NavBar: React.FC = () => {
 
   const menuList: MenuItem[] = [
     // { label: 'Github', href: 'https://github.com/vaibhavvvvv/blogchain' },
-    { label: 'Create New Blog',href:'/create' },
+    { label: 'New',href:'/create' },
   ];
 
   return (
     <div className="bg-black">
-      <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      <div className="px-4 py-5  sm:max-w md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" passHref aria-label='Company' title='Company' className="inline-flex items-center mr-8">
@@ -41,8 +42,10 @@ const NavBar: React.FC = () => {
               ))}
             </ul>
           </div>
-          <ul className="flex items-center space-x-8 lg:flex">
-            <li>
+          <ul className="flex sm:hidden hidden items-center space-x-8 lg:flex">
+            <li             
+            className='sm:hidden hidden flex'  
+             >
               <w3m-button /> 
             </li>
             <li>              
@@ -67,7 +70,7 @@ const NavBar: React.FC = () => {
                       <Link href="/" passHref
                          aria-label='Company' title='Company' className="inline-flex  items-center">
                           <Logo color="text-black" />
-                          <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">BlogChain</span>
+                          <span className="ml-2 text-xl font-bold  tracking-wide text-gray-800 uppercase">BlogChain</span>
                       </Link>
                     </div>
                     <div>
@@ -77,7 +80,7 @@ const NavBar: React.FC = () => {
                         className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-700 focus:outline-none focus:shadow-outline"
                         onClick={() => setIsMenuOpen(false)}
                       >
-                        <svg className="w-5 text-gray-100" viewBox="0 0 24 24">
+                        <svg className="w-5 text-black" viewBox="0 0 24 24">
                           <path
                             fill="currentColor"
                             d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
@@ -90,12 +93,15 @@ const NavBar: React.FC = () => {
                   <ul className="space-y-4">
                         {menuList.map((el, i) => (
                         <li key={i + 1}>
-                            <Link href={el.href || '/'} passHref className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">
+                            <Link href={el.href || '/'} passHref className="font-medium text-center tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">
                                 {el.label}
                             </Link>
                         </li>
                         ))}
+                        <li className='bg-black rounded-3xl' >
                         <w3m-button />
+
+                        </li>
                     </ul>
                   </nav>
                 </div>

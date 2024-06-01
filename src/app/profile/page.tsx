@@ -41,8 +41,10 @@ console.log("addaa ",address)
         <div  >
                     <div className='bg-black text-white md:px-24 lg:px-8 lg:py-10  ' >   
 
-                    <p className=' text-2xl leading-5 py-1 text-center'>User </p>
-                    <p className=' text-2xl font-semibold leading-5 hover:text-teal-100 pb-9 text-center'>{address} </p>
+                    <p className=' text-2xl leading-5 py-5 text-center'>User </p>
+                    <p className='sm:text-sm leading-5 hover:text-teal-100 pb-9 overflow-y-auto w-4/5 text-center mx-auto'>
+                        {address}
+                    </p>
                     <div className='h-1 bg-gray-700 w-4/5 mx-auto' > </div>
 
                      <p className='py-8 text-2xl font-bold leading-5 text-center'>All Your Blogs</p>
