@@ -4,7 +4,7 @@ import { GetAllBlogs } from "@/lib/client";
 import { BlogPost } from "@/types/types";
 import { DeleteBlog } from "@/lib/client";
 import { useAccount } from 'wagmi'
-
+import Link from 'next/link';
 
 const Profile = () => {
     const [blogPosts, setBlogPosts] = useState<readonly BlogPost[]>([]);
@@ -38,8 +38,8 @@ console.log("addaa ",address)
 
    
     return (
-        <div  >
-                    <div className='bg-black text-white md:px-24 lg:px-8 lg:py-10  ' >   
+        <div className='bg-black flex justify-center' >
+                    <div className='bg-black text-white md:px-24 sm:min-w-4/5 lg:py-10   ' >   
 
                     <p className=' text-2xl leading-5 py-5 text-center'>User </p>
                     <p className='sm:text-sm leading-5 hover:text-teal-100 pb-9 overflow-y-auto w-4/5 text-center mx-auto'>
@@ -52,9 +52,11 @@ console.log("addaa ",address)
 
                         <div className=" grid gap-5 py-4 lg:grid-cols-3 sm:max-w-sm sm:max-auto lg:max-w-full ">
                             {blogPosts.map((post) => (
-                                <div
+
+                                <Link
+                                href={`/blog/${post.id}`} 
                                     key={post.id}
-                                    className="bg-gray-950 border-2-xl p-5 m-5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
+                                    className="bg-gray-950  p-5 m-5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
                                 >
                                     <h2 className="text-white text-xl font-bold mb-2">{post.title}</h2>
                                     <p className="text-gray-300">
@@ -69,7 +71,7 @@ console.log("addaa ",address)
                                         DELETE
                                     </button>
                                     <br />
-                                </div>
+                                </Link>
                             ))}
                         </div>
                         

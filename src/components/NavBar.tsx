@@ -44,7 +44,7 @@ const NavBar: React.FC = () => {
           </div>
           <ul className="flex sm:hidden hidden items-center space-x-8 lg:flex">
             <li             
-            className='sm:hidden hidden flex'  
+            className=''  
              >
               <w3m-button /> 
             </li>
