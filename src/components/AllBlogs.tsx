@@ -49,19 +49,17 @@ const AllBlogs = () => {
                 {filteredBlogPosts.length > 0 ? (
                         <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:max-auto lg:max-w-full ">
                             {filteredBlogPosts.map((post) => (
-                                <Link href={`/blog/${post.id}`} >
+                                <Link href={`/blog/${post.id}`} key={post.id}>
                                     <div
-                                    key={post.id}
-                                    className="bg-gray-950  lg:min-h-60 border-2-xl p-5 m-3 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
-                                >
-                                    <h2 className="text-white text-xl font-bold mb-2">{post.title}</h2>
-                                    <p className="text-gray-300" dangerouslySetInnerHTML={{ __html: post.content.length>30? md.render(post.content).slice(0, 100)+"..." :   md.render(post.content) }} />
-                                    <p className="text-gray-400 pt-5">Author: {post.author.slice(0, 20)}</p>
-                                
-                                </div>
+                                        className="bg-gray-950  lg:min-h-60 border-2-xl p-5 m-3 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
+                                    >
+                                        <h2 className="text-white text-xl font-bold mb-2">{post.title}</h2>
+                                        <p className="text-gray-300" dangerouslySetInnerHTML={{ __html: post.content.length > 30 ? md.render(post.content).slice(0, 100) + "..." : md.render(post.content) }} />
+                                        <p className="text-gray-400 pt-5">Author: {post.author.slice(0, 20)}</p>
+                                    </div>
                                 </Link>
-                                
                             ))}
+
                         </div>
                     ) : (
                         <div className="text-center mt-10">
