@@ -29,7 +29,7 @@ const Profile = () => {
 
     useEffect(() => {
         loadBlogs();
-    }, []);
+    }, [loadBlogs]);
 
     const handleDelete = async (blogId: bigint) => {
         const confirmed = window.confirm("Are you sure you want to delete this blog?");
