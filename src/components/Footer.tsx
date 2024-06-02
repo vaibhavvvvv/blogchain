@@ -44,11 +44,11 @@ On BlogChain</h1>
 
 <Link href="/" className="hidden md:block cursor-pointer text-gray-600 hover:text-red-200 uppercase">About</Link>
 
-<Link href="/" className="hidden md:block cursor-pointer text-gray-600 hover:text-yellow-200 uppercase">Services</Link>
+<Link href="https://github.com/vaibhavvvvv/blogchain" target='blank' className="hidden md:block cursor-pointer text-gray-600 hover:text-green-200 uppercase">Github</Link>
 
-<Link href="/" className="hidden md:block cursor-pointer text-gray-600 hover:text-green-200 uppercase">Why us</Link>
+<Link href="/" className="hidden md:block cursor-pointer text-gray-600 hover:text-yellow-200 uppercase">vaibhavng7@gmail.com</Link>
 
-<Link href="/" className="hidden md:block cursor-pointer text-gray-600 hover:text-blue-200 uppercase">Contact</Link>
+<Link href="/" className="hidden md:block cursor-pointer text-gray-600 hover:text-blue-200 uppercase">+91 8855910016</Link>
 
 <div className="flex flex-row space-x-8 items-center justify-between">
 
