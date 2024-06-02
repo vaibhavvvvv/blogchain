@@ -15,8 +15,10 @@ const Profile = () => {
     const { address } = useAccount()
 
     const loadBlogs = async () => {
-        if (typeof window !== "undefined") {
-            const allBlogs = await GetAllBlogs(window.ethereum);
+        if (typeof window !== "undefined") {        
+            const ethereum = (window as any).ethereum;
+            
+            const allBlogs = await GetAllBlogs(ethereum);
             const onlyUserBlogs = allBlogs.filter(
                 (blog) => 
                     blog.author.toLowerCase() == address?.toLowerCase()
@@ -34,7 +36,9 @@ const Profile = () => {
       
         if (confirmed) {
           try {
-            await DeleteBlog(window.ethereum, blogId);
+            const ethereum = (window as any).ethereum;
+
+            await DeleteBlog(ethereum, blogId);
             // setBlogPosts(blogPosts.filter((blog) => blog.id !== BigInt(blogId)));
           } catch (error) {
             console.error("Error deleting blog post:", error);

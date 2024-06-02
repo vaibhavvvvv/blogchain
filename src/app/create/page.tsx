@@ -93,7 +93,9 @@ const CreateBlog = () => {
   };
 
   const handleCreate = () => {
-    CreateNewBlog(window.ethereum, title, content);
+    const ethereum = (window as any).ethereum;
+
+    CreateNewBlog(ethereum, title, content);
   };
 
   return (

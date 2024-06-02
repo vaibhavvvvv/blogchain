@@ -14,7 +14,9 @@ const AllBlogs = () => {
 
     const loadBlogs = async () => {
         if (typeof window !== "undefined") {
-            const result = await GetAllBlogs(window.ethereum);
+            const ethereum = (window as any).ethereum;
+
+            const result = await GetAllBlogs(ethereum);
             setBlogPosts(result);
         }
     };

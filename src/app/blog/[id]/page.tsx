@@ -14,7 +14,9 @@ const Page = ({ params }: { params: { id: string } }) => {
     const [blog, setBlog] = useState<BlogPost | null>(null);
 
     const loadBlog = async (blogId: string) => {
-        const fetchedBlog = await GetBlog(window.ethereum, BigInt(blogId));
+      const ethereum = (window as any).ethereum;
+
+        const fetchedBlog = await GetBlog(ethereum, BigInt(blogId));
         setBlog(fetchedBlog);
     };
 
@@ -29,7 +31,9 @@ const Page = ({ params }: { params: { id: string } }) => {
     
         if (confirmed) {
             try {
-                await DeleteBlog(window.ethereum, blogId);
+              const ethereum = (window as any).ethereum;
+
+                await DeleteBlog(ethereum, blogId);
             } catch (error) {
                 console.error("Error deleting blog post:", error);
             }
@@ -43,12 +47,13 @@ const Page = ({ params }: { params: { id: string } }) => {
     }
 
     return (
-        <div className=' bg-black p-5 flex justify-center' >
+        <div className=' bg-black sm:max-w-full p-5 flex justify-center' >
             <div
                 key={blog.id}
                 className="bg-gray-950 border-2-xl p-5 lg:w-4/5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
             >
-                <h2 className="text-white text-xl font-bold mb-2">{blog.title}</h2>
+                <h2 className="text-white text-2xl font-bold mb-2">{blog.title}</h2>
+                <br />
                 <div className="text-gray-300" dangerouslySetInnerHTML={{ __html: md.render(blog.content) }} />
                 <p className="text-gray-400 hover:text-teal-100 pt-5">Author: {blog.author}</p>
                 <br />
