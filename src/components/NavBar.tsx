@@ -6,6 +6,7 @@ import Logo from '../components/shared/Logo';
 import Menu from '../components/shared/Menu';
 import ConnectButton from './shared/ConnectButton';
 
+
 interface MenuItem {
   label: string;
   href?: string; 
@@ -16,7 +17,8 @@ const NavBar: React.FC = () => {
 
   const menuList: MenuItem[] = [
     // { label: 'Github', href: 'https://github.com/vaibhavvvvv/blogchain' },
-    { label: 'New',href:'/create' },
+    { label: 'Create New Blog',href:'/create' },
+    { label: 'User Profile',href:'/profile' },
   ];
 
   return (
@@ -28,29 +30,27 @@ const NavBar: React.FC = () => {
                 <Logo color="text-white hover:text-teal-200" />
                 <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 hover:text-teal-200 uppercase">BlogChain</span>
             </Link>
+          </div>
+          <ul className="flex sm:hidden hidden items-center space-x-8 lg:flex">
+            
+            {/* <li>              
+              <Link href='/profile' className='text-white hover:text-yellow-200'  >Profile</Link>
+            </li> */}
             <ul className="flex items-center space-x-8 lg:flex  ">
-              {menuList.map((el, i) => (
+            <li className='' >
+              <w3m-button /> 
+            </li>
+            {menuList.map((el, i) => (
                 <li key={i + 1}>
                   <Link href={el.href || '/'} passHref
-                      aria-label='Our Product'
-                      title='Our Product'
                       className="font-medium tracking-wide text-gray-100 hover:text-red-200 hover:font-bold transition-colors duration-200 "
                     >
-                      {el.label}
+                      {el.label == 'User Profile'? (<img src="/user.svg" className='w-5 hover:shadow-md hover:shadow-white bg-gray-100 rounded-full' alt="No Data"  />): el.label  }
                   </Link>
                 </li>
               ))}
+             
             </ul>
-          </div>
-          <ul className="flex sm:hidden hidden items-center space-x-8 lg:flex">
-            <li             
-            className=''  
-             >
-              <w3m-button /> 
-            </li>
-            <li>              
-              <Link href='/profile' className='text-white hover:text-yellow-200'  >Profile</Link>
-            </li>
           </ul>
 
           <div className="lg:hidden z-40">
@@ -98,7 +98,7 @@ const NavBar: React.FC = () => {
                             </Link>
                         </li>
                         ))}
-                        <li className='bg-black rounded-3xl' >
+                        <li className=' rounded-3xl' >
                         <w3m-button />
 
                         </li>
