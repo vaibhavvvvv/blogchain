@@ -61,7 +61,7 @@ const Profile = () => {
 
    
     return (
-        <div className='bg-black flex justify-center'>
+        <div className='bg-black flex justify-center pt-40 '>
             <div className='bg-black text-white md:px-24 sm:min-w-4/5 lg:py-10 relative'>
                 {loading && (
                     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">

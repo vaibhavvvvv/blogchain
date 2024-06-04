@@ -5,7 +5,7 @@ export default function Home() {
 
 
   return (
-    <main className="text-white bg-black " >
+    <main className="text-white bg-black pt-28 " >
       {/* <Carousel /> */}
       <AllBlogs />
     </main>
