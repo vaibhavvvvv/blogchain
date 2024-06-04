@@ -11,6 +11,7 @@ const md = new MarkdownIt();
 const AllBlogs = () => {
     const [blogPosts, setBlogPosts] = useState<readonly BlogPost[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
+    const [loading, setLoading] = useState(true); 
 
     const loadBlogs = async () => {
         if (typeof window !== "undefined") {
@@ -18,6 +19,7 @@ const AllBlogs = () => {
 
             const result = await GetAllBlogs(ethereum);
             setBlogPosts(result);
+            setLoading(false); 
         }
     };
 
@@ -34,6 +36,12 @@ const AllBlogs = () => {
         <div>
             <div className='px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-1 lg:py-10 lg:w-4/5'>
                 {/* <p className='py-16 text-2xl font-bold leading-5 text-center'>All Blogs</p> */}
+                {loading && (
+                    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+                        <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-100"></div>
+                    </div>
+                )}
+                <>
                 <div className='flex justify-center flex-col lg:py-16 sm:flex-row items-center ' >   
                     <span className='text-2xl font-bold text-center pr-2 sm:pr-0 pb-2 sm:pb-0' >Search for Blogs </span>
                     <input
@@ -70,6 +78,7 @@ const AllBlogs = () => {
                     </div>
                     )
                 }
+                </>
             </div>
         </div>
     );
