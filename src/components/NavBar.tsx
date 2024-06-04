@@ -1,10 +1,9 @@
-// NavBar.tsx
-
 import React, { useState } from 'react';
 import Link from 'next/link'; 
 import Logo from '../components/shared/Logo';
 import Menu from '../components/shared/Menu';
 import ConnectButton from './shared/ConnectButton';
+import { useAccount } from 'wagmi';
 
 
 interface MenuItem {
@@ -14,6 +13,8 @@ interface MenuItem {
 
 const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isWalletConnected, SetIsWalletConnected] = useState(false)
+  const { address} = useAccount()
 
   const menuList: MenuItem[] = [
     // { label: 'Github', href: 'https://github.com/vaibhavvvvv/blogchain' },
@@ -42,7 +43,16 @@ const NavBar: React.FC = () => {
             </li>
             {menuList.map((el, i) => (
                 <li key={i + 1}>
-                  <Link href={el.href || '/'} passHref
+                  <Link href={isWalletConnected? el.href || '/': '/' } passHref
+
+                    onClick={()=>{
+                        if(address != undefined){
+                          SetIsWalletConnected(true)
+                        } else{
+                          SetIsWalletConnected(false)
+                          alert("Please connect your wallet to view your profile")
+                      }
+                    }}
                       className="font-medium tracking-wide text-gray-100 hover:text-red-200 hover:font-bold transition-colors duration-200 "
                     >
                       {el.label == 'User Profile'? (<img src="/user.svg" className='w-5 hover:shadow-md hover:shadow-white bg-gray-100 rounded-full' alt="No Data"  />): el.label  }
