@@ -86,12 +86,14 @@ import { CreateNewBlog } from "@/lib/client";
 import MarkdownIt from 'markdown-it';
 import MarkdownEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
+import { useAccount } from 'wagmi';
 
 const md = new MarkdownIt();
 
 const CreateBlog = () => {
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
+    const { address} = useAccount()
 
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -101,10 +103,26 @@ const CreateBlog = () => {
         setContent(text);
     };
 
-    const handleCreate = () => {
-        const ethereum = (window as any).ethereum;
+    const handleCreate = async() => {
+        if (address == undefined){
+            alert("Please Connect Your Wallet First.")
+        } else{
 
-        CreateNewBlog(ethereum, title, content);
+            if (content.trim() != "" && title.trim() != ""){
+                const confirmed = window.confirm("Are you sure you want to Publish this blog?");
+
+                if (confirmed) {
+                    try {
+                        const ethereum = (window as any).ethereum;
+                        const response = await CreateNewBlog(ethereum, title, content);
+                    } catch (error) {
+                        alert("Blog Not Published As User Denied Transaction Signature.");
+                    }
+                }
+            } else {
+                alert("Please write both Title & Content for blog")
+            }
+        }
     };
 
     return (

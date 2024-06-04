@@ -6,8 +6,8 @@ import Web3Modal from "@/context/Web3Modal";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Wagmi",
-  description: "This is a cool description",
+  title: "BlogChain",
+  description: "Decentralized Blogging Platform",
 };
 
 export default function RootLayout({ children}: Readonly<{  children: React.ReactNode;}>) {
