@@ -59,6 +59,14 @@ const Profile = () => {
         }
       };
 
+      const images = [
+        "/1.jpg",
+        "/2.avif",
+        "/3.jpg",
+        "/4.webp",
+        '/5.jpg'
+    ];
+
    
     return (
         <div className='bg-black flex justify-center pt-40 '>
@@ -78,24 +86,26 @@ const Profile = () => {
                 <p className='py-8 text-2xl font-bold leading-5 text-center'>All Your Blogs</p>
 
                 <div className="grid gap-5 py-4 lg:grid-cols-3 sm:max-w-sm sm:max-auto lg:max-w-full">
-                    {blogPosts.map((post) => (
+                    {blogPosts.map((post,index) => (
                         <div
                             key={post.id}
-                            className="bg-gray-950 lg:min-h-60 p-5 m-5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
+                            className="bg-gray-950 lg:min-h-60 m-5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
+                            style={{ backgroundImage: `url(${images[index % images.length]})`, backgroundSize: 'cover' }}
                         >
                             <Link href={`/blog/${post.id}`} className='hover:underline hover: hover:text-gray-600'>
-                                <h2 className="text-white text-xl font-bold mb-2">{post.title}</h2>
-                                <p className="text-gray-300" dangerouslySetInnerHTML={{ __html: post.content.length>30? md.render(post.content).slice(0, 100)+"..." : md.render(post.content) }} />
-                                <p className="text-gray-400 pt-5">Author: {post.author.slice(0, 20)}</p>    
+                                <div className='bg-black bg-opacity-60 p-5 m-2 rounded-xl ' >
+                                    <h2 className="text-white text-xl font-bold mb-2">{post.title}</h2>
+                                    <p className="text-gray-200" dangerouslySetInnerHTML={{ __html: post.content.length>30? md.render(post.content).slice(0, 100)+"..." : md.render(post.content) }} />
+                                    <p className="text-gray-300 pt-5">Author: {post.author.slice(0, 20)}</p> 
+                                    <button
+                                        className="bg-red-500 hover:bg-red-700 hover:shadow-md hover:shadow-red-400 mt-4 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700"
+                                        onClick={() => handleDelete(post.id)}
+                                    >
+                                        DELETE
+                                    </button>
+                                    <br />
+                                </div>
                             </Link>
-                            
-                            <button
-                                className="bg-red-500 hover:bg-red-700 hover:shadow-md hover:shadow-red-400 mt-4 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700"
-                                onClick={() => handleDelete(post.id)}
-                            >
-                                DELETE
-                            </button>
-                            <br />
                         </div>
                     ))}
                 </div>
