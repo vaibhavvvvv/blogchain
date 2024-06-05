@@ -32,7 +32,7 @@ const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
 
     if (isPaused) {
       setDisplayPlay(false)
-      utterances.forEach(utterance => synth.resume(utterance));
+      utterances.forEach(utterance => synth.resume());
     } else {
       setDisplayPlay(false)
       utterances.forEach(utterance => synth.speak(utterance));
@@ -44,14 +44,14 @@ const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
 
   const handlePause = () => {
     const synth = window.speechSynthesis;
-    utterances.forEach(utterance => synth.pause(utterance));
+    utterances.forEach(utterance => synth.pause());
     setDisplayPlay(true)
     setIsPaused(true);
   };
 
   const handleStop = () => {
     const synth = window.speechSynthesis;
-    utterances.forEach(utterance => synth.cancel(utterance));
+    utterances.forEach(utterance => synth.cancel());
     setDisplayPlay(true)
     setIsPaused(false);
   };
