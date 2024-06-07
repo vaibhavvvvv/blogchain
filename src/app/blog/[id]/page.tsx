@@ -174,7 +174,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                 await DeleteBlog(ethereum, blogId);
                 setLoading(false)
                 alert("Blog Deleted Successfully")
-
+                
             } catch (error) {
                 setLoading(false)
                 alert("Cannot Delete Blog as transaction signature declined");

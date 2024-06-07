@@ -61,7 +61,7 @@ const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
   }
 
   return (
-    <div className="text-white">
+    <div className="text-white mt-3 ">
       {displayPlay ? (
         <button onClick={handlePlay} aria-label="Play" title="Play" >
           <svg
