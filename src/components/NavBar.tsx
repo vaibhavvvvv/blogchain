@@ -18,8 +18,10 @@ const NavBar: React.FC = () => {
 
   const menuList: MenuItem[] = [
     // { label: 'Github', href: 'https://github.com/vaibhavvvvv/blogchain' },
+    { label: 'Home',href:'/' },
     { label: 'Create New Blog',href:'/create' },
     { label: 'User Profile',href:'/profile' },
+
   ];
 
   return (
@@ -62,6 +64,13 @@ const NavBar: React.FC = () => {
                           </svg> 
                         </button>
                         ): 
+                        el.label == 'Home'? (
+                          <button aria-label='Profile' title="Profile" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-house text-white rounded hover:bg-yellow-100 hover:text-black bi-person " viewBox="0 0 16 16">
+                              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                            </svg>
+                          </button>
+                          ): 
                         <button aria-label='Create New Blog' title="Create New Blog" >
                           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"   className="mt-2 bi text-white rounded hover:text-black hover:bg-pink-200 bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -129,9 +138,8 @@ const NavBar: React.FC = () => {
                             </Link>
                         </li>
                         ))}
-                        <li className=' rounded-3xl' >
-                        <w3m-button />
-
+                       <li className="flex justify-center items-center rounded-3xl bg-black">
+                          <w3m-button />
                         </li>
                     </ul>
                   </nav>
