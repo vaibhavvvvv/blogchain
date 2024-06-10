@@ -98,14 +98,16 @@ const Page = ({ params }: { params: { id: string } }) => {
             ) : (
                 <div
                     key={blog.id}
-                    className="bg-gray-950 border-2-xl lg:w-4/5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
+                    className="bg-gray-950 border-2-xl w-full lg:w-4/5 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md"
+
                     style={{ backgroundImage: bgImage, backgroundSize: 'cover' }}
                 >
                     <div className='bg-black bg-opacity-60 p-3 lg:p-5 rounded-xl ' >
                         <h2 className="text-white text-2xl font-bold mb-2">{blog.title}</h2>
                         <br />
                         <div className="text-gray-100" dangerouslySetInnerHTML={{ __html: md.render(blog.content) }} />
-                        <p className="text-gray-400 hover:text-teal-100 pt-5">Author: {blog.author}</p>
+                        <p className={`text-gray-400 hover:text-teal-100 pt-5 ${window.innerWidth < 640 ? 'truncate' : ''}`}>Author: {blog.author}</p>
+
                         <br />
                         {blog.author.toLowerCase() === address?.toLowerCase() && (
                             <button
@@ -114,15 +116,8 @@ const Page = ({ params }: { params: { id: string } }) => {
                             >
                                 DELETE
                             </button>
-                        )}
-                        {/* <button
-                            className="bg-green-500 hover:bg-green-700 hover:shadow-md hover:shadow-green-400 mt-4 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
-                            onClick={speak}
-                        >
-                            SPEAK CONTENT
-                        </button> */}
-                              <TextToSpeech text={blog.content} />
-
+                        )}                      
+                        <TextToSpeech text={blog.content} />
                     </div>                
                 </div>
             )}

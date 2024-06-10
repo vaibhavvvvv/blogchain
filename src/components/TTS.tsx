@@ -57,13 +57,10 @@ const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
   };
 
   if (typeof window.speechSynthesis === 'undefined') {
-    console.log("type  ", window.speechSynthesis)
-return null
-  } else{
-    console.log("type  ", window.speechSynthesis)
-
+    return null
   }
 
+  
   return (
     <div className="text-white mt-3 ">
       {displayPlay ? (
