@@ -56,8 +56,12 @@ const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
     setIsPaused(false);
   };
 
-  if (!window.speechSynthesis) {
-    return null;
+  if (typeof window.speechSynthesis === 'undefined') {
+    console.log("type  ", window.speechSynthesis)
+return null
+  } else{
+    console.log("type  ", window.speechSynthesis)
+
   }
 
   return (
