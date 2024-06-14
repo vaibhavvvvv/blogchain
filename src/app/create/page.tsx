@@ -35,12 +35,15 @@ const CreateBlog = () => {
                     setLoading(true)
                     try {
                         const ethereum = (window as any).ethereum;
+                        // console.log("eth :", ethereum)
                         const response = await CreateNewBlog(ethereum, title, content);
+                        // console.log(response)
                         alert("Blog Publised Successfully")
                         setLoading(false)
                     } catch (error) {
                         setLoading(false)
                         alert("Blog Not Published As User Denied Transaction Signature.");
+                        // console.log(error)
                     }
                 }
             } else {
@@ -50,7 +53,7 @@ const CreateBlog = () => {
     };
 
     return (
-        <div className="bg-black flex justify-center pb-52 pt-48  ">
+        <div className="bg-black flex text-left justify-center pb-52 pt-48  ">
          {loading && (
                     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
                         <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-100"></div>

@@ -7,10 +7,10 @@ const Footer = () => {
         <div className="w-full min-h-screen flex items-center justify-center bg-black">
             <div className="md:w-4/5 w-full px-4 text-white flex flex-col">
                 <div className="w-full text-5xl font-bold">
-                    <h1 className="w-full md:w-4/5 hover:text-blue-200">Express Your Experiences On BlogChain</h1>
+                    <h1 className="w-full text-left md:w-4/5 ">Express Your Experiences On BlogChain</h1>
                 </div>
                 <div className="flex mt-8 flex-col md:flex-row md:justify-between">
-                    <p className="w-full md:w-4/5 text-gray-400">Write and Share your Experiences as blogs on BlogChain to connect with the people in this decentralized world.</p>
+                    <p className="w-full md:w-4/5 text-gray-400 text-left ">Write and Share your Experiences as blogs on BlogChain to connect with the people in this decentralized world.</p>
                     <div className="w-full md:w-auto pt-6 md:pt-0 md:pl-8">
                         <Link href="/create" className="bg-red-500 hover:bg-red-700 hover:shadow-md hover:shadow-red-400 justify-center text-center rounded-lg shadow px-10 py-3 flex items-center block md:inline-block">Create A New Blog</Link>
                     </div>
@@ -18,8 +18,8 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row md:justify-between mt-8">
                     <div className="mb-8 md:mb-0">
                         <Link href="/" passHref aria-label='Company' title='Company' className="inline-flex items-center mr-8">
-                            <Logo color="text-white hover:text-teal-200" />
-                            <span className="ml-2 text-xl font-bold tracking-wide hover:text-teal-200 text-gray-100 uppercase">BlogChain</span>
+                            <Logo color="text-white " />
+                            <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">BlogChain</span>
                         </Link>
                     </div>
 {/* 

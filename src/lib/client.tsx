@@ -15,6 +15,7 @@ export function WalletClientCreate(eth: any) {
         chain: polygonAmoy,
         transport: custom(eth)
     })
+    // console.log("wall", walletClient)
     return walletClient
 }
 
@@ -22,6 +23,7 @@ export async function CreateNewBlog(ethProvider: any, title: string, content: st
     const walletClient = WalletClientCreate(ethProvider);
     const accounts = await walletClient.getAddresses();
     const acc = accounts[0];
+    // console.log("acc",walletClient)
     const contract = getContract({
         address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
         abi: abi,

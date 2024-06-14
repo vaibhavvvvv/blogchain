@@ -31,7 +31,7 @@ const AllBlogs = () => {
 
     const images = [
         "/1.jpg",
-        "/2.avif",
+        "/2.jpg",
         "/3.jpg",
         "/4.webp",
         '/5.jpg'
@@ -43,7 +43,7 @@ const AllBlogs = () => {
 
     return (
         <div>
-            <div className='px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-1 lg:py-10 lg:w-4/5'>
+            <div className='px-4  py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-1 lg:py-10 lg:w-4/5'>
                 {loading && (
                     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
                         <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-100"></div>
@@ -65,11 +65,11 @@ const AllBlogs = () => {
                 <br />
 
                 {filteredBlogPosts.length > 0 ? (
-                        <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:max-auto lg:max-w-full ">
+                        <div className="grid gap-5 lg:grid-cols-3 justify-center md:max-m-200 sm:max-w-sm sm:max-auto lg:max-w-full ">
                             {filteredBlogPosts.map((post, index) => (
                                 <Link href={`/blog/${post.id}`} key={post.id}>
                                     <div
-                                        className={`border-2-xl m-2 lg:min-h-72 hover:border-3 hover:shadow-md hover:shadow-white hover:border-teal-400 border-gray-400 border-2 rounded-xl shadow-md`}
+                                        className={`border-2-xl m-2 lg:min-h-72 hover:border-3 hover:shadow-md hover:shadow-gray-400 hover:border-gray-200 border-gray-400 border-2 rounded-xl shadow-md`}
                                         style={{ backgroundImage: `url(${images[index % images.length]})`, backgroundSize: 'cover' }}
                                     >
                                         <div className='bg-black bg-opacity-60 p-5 m-2 rounded-xl ' >
