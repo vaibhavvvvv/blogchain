@@ -1,25 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [utterances, setUtterances] = useState<SpeechSynthesisUtterance[]>([]);
   const [displayPlay, setDisplayPlay] = useState<boolean>(true);
+  const currentUtteranceIndex = useRef<number>(0);
 
   useEffect(() => {
     const synth = window.speechSynthesis;
-    const chunks = text.match(/.{1,200}/g); 
     
-    const voices = synth.getVoices();
+    const removeMarkdown = (md: string) => {
+      return md
+        .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') 
+        .replace(/[*_~`#]/g, '') 
+        .replace(/^\s*[-+*]\s+/gm, '')
+        .replace(/^\s*\d+\.\s+/gm, '') 
+        .replace(/^#+\s+/gm, '') 
+        .replace(/\n{2,}/g, '\n') 
+        .trim();
+    };
 
+    const splitIntoChunks = (text: string, maxLength: number = 200): string[] => {
+      const words = text.split(/\s+/);
+      const chunks: string[] = [];
+      let currentChunk = "";
+
+      words.forEach((word) => {
+        if (currentChunk.length + word.length + 1 > maxLength && currentChunk.length > 0) {
+          chunks.push(currentChunk.trim());
+          currentChunk = word;
+        } else {
+          currentChunk += (currentChunk ? " " : "") + word;
+        }
+      });
+
+      if (currentChunk) {
+        chunks.push(currentChunk.trim());
+      }
+
+      return chunks;
+    };
+
+    const cleanedText = removeMarkdown(text);
+    const chunks = splitIntoChunks(cleanedText);
+    
     if (chunks && synth) { 
-      const utterances = chunks.map(chunk => {
+      const newUtterances = chunks.map((chunk, index) => {
         const u = new SpeechSynthesisUtterance(chunk);
-        u.rate = 1; 
+        u.rate = 1;
+        u.onend = () => {
+          if (index < chunks.length - 1) {
+            currentUtteranceIndex.current = index + 1;
+            synth.speak(newUtterances[index + 1]);
+          } else {
+            setDisplayPlay(true);
+            currentUtteranceIndex.current = 0;
+          }
+        };
         return u;
       });
-      setUtterances(utterances);
-
-      utterances.forEach(utterance => synth.speak(utterance));
+      setUtterances(newUtterances);
     }
 
     return () => {
@@ -31,29 +71,30 @@ const TextToSpeech: React.FC<{ text: string }> = ({ text }) => {
     const synth = window.speechSynthesis;
 
     if (isPaused) {
-      setDisplayPlay(false)
-      utterances.forEach(utterance => synth.resume());
+      synth.resume();
     } else {
-      setDisplayPlay(false)
-      utterances.forEach(utterance => synth.speak(utterance));
-
+      if (currentUtteranceIndex.current < utterances.length) {
+        synth.speak(utterances[currentUtteranceIndex.current]);
+      }
     }
 
+    setDisplayPlay(false);
     setIsPaused(false);
   };
 
   const handlePause = () => {
     const synth = window.speechSynthesis;
-    utterances.forEach(utterance => synth.pause());
-    setDisplayPlay(true)
+    synth.pause();
+    setDisplayPlay(true);
     setIsPaused(true);
   };
 
   const handleStop = () => {
     const synth = window.speechSynthesis;
-    utterances.forEach(utterance => synth.cancel());
-    setDisplayPlay(true)
+    synth.cancel();
+    setDisplayPlay(true);
     setIsPaused(false);
+    currentUtteranceIndex.current = 0;
   };
 
   if (typeof window.speechSynthesis === 'undefined') {
