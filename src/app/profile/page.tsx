@@ -18,9 +18,10 @@ const Profile = () => {
 
     const loadBlogs = async () => {
         if (typeof window !== "undefined") {        
-            const ethereum = (window as any).ethereum;
+            // const ethereum = (window as any).ethereum;
             
-            const allBlogs = await GetAllBlogs(ethereum);
+            // const allBlogs = await GetAllBlogs(ethereum);
+            const allBlogs = await GetAllBlogs();
             const onlyUserBlogs = allBlogs.filter(
                 (blog) => 
                     blog.author.toLowerCase() == address?.toLowerCase()
