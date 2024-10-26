@@ -20,9 +20,10 @@ const Page = ({ params }: { params: { id: string } }) => {
     const [bgImage, setBgImage] = useState<string>('');
 
     const loadBlog = async (blogId: string) => {
-        const ethereum = (window as any).ethereum;
+        // const ethereum = (window as any).ethereum;
+        // const fetchedBlog = await GetBlog(ethereum, BigInt(blogId));
+        const fetchedBlog = await GetBlog( BigInt(blogId));
 
-        const fetchedBlog = await GetBlog(ethereum, BigInt(blogId));
         setBlog(fetchedBlog);
         setLoading(false);
     };

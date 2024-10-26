@@ -16,13 +16,16 @@ const AllBlogs = () => {
     const [loading, setLoading] = useState(true); 
 
     const loadBlogs = async () => {
-        if (typeof window !== "undefined") {
-            const ethereum = (window as any).ethereum;
+        // if (typeof window !== "undefined") {
+        //     const ethereum = (window as any).ethereum;
 
-            const result = await GetAllBlogs(ethereum);
+        //     const result = await GetAllBlogs(ethereum);
+        //     setBlogPosts(result);
+        //     setLoading(false); 
+        // }
+                const result = await GetAllBlogs();
             setBlogPosts(result);
             setLoading(false); 
-        }
     };
 
     useEffect(() => {

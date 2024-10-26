@@ -21,39 +21,24 @@ export function WalletClientCreate(eth: any) {
 
 export async function CreateNewBlog(ethProvider: any, title: string, content: string) {
     const walletClient = WalletClientCreate(ethProvider);
-    const [account] = await walletClient.getAddresses();
-    
-    if (!account) {
-        throw new Error("No account found. Please ensure you're connected to a wallet.");
-    }
-
+    const accounts = await walletClient.getAddresses();
+    const acc = accounts[0];
+    // console.log("acc",walletClient)
     const contract = getContract({
         address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
         abi: abi,
         client: { public: publicClient, wallet: walletClient },
     });
-
-    try {
-        const estimatedGas = await contract.estimateGas.createPost([title, content], {
-            account,
-        });
-
-        const result = await contract.write.createPost([title, content], {
-            account,
-            gas: BigInt(estimatedGas) * BigInt(2), // Double the estimated gas as a safety margin
-        });
-
-        return result;
-    } catch (error) {
-        console.error("Transaction failed:", error);
-        throw error;
-    }
+    const result = contract.write.createPost([title, content], {
+        account: acc,
+    });
+    return result
 }
 
 
-export async function GetAllBlogs(ethProvider: any) {
-    const walletClient = WalletClientCreate(ethProvider)
-    const accounts = await walletClient.getAddresses();
+export async function GetAllBlogs() {
+    // const walletClient = WalletClientCreate(ethProvider)
+    // const accounts = await walletClient.getAddresses();
     // const acc = accounts[0];
     const contract = getContract({
         address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,
@@ -64,9 +49,9 @@ export async function GetAllBlogs(ethProvider: any) {
     return result
 }
 
-export async function GetBlog(ethProvider: any, id: bigint) {
-    const walletClient = WalletClientCreate(ethProvider)
-    const accounts = await walletClient.getAddresses();
+export async function GetBlog( id: bigint) {
+    // const walletClient = WalletClientCreate(ethProvider)
+    // const accounts = await walletClient.getAddresses();
     // const acc = accounts[0];
     const contract = getContract({
         address: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`,

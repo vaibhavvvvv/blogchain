@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="bg-black fixed z-50 w-full ">
-      <div className="px-4 py-5  sm:max-w md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      <div className="px-4 py-5  sm:max-w md:max-w-full lg:max-w-full md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" passHref aria-label='Company' title='Company' className="inline-flex items-center mr-8">
@@ -52,7 +52,7 @@ const NavBar: React.FC = () => {
                           SetIsWalletConnected(true)
                         } else{
                           SetIsWalletConnected(false)
-                          alert("Please connect your wallet to view your profile")
+                          alert("Please connect your wallet first")
                       }
                     }}
                       className="font-medium tracking-wide  text-gray-100 hover:text-red-200 hover:font-bold transition-colors duration-200 "
@@ -65,7 +65,7 @@ const NavBar: React.FC = () => {
                         </button>
                         ): 
                         el.label == 'Home'? (
-                          <button aria-label='Profile' title="Profile" >
+                          <button aria-label='Home' title="Home" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" className="bi bi-house text-white rounded hover:bg-white hover:text-black bi-person " viewBox="0 0 16 16">
                               <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                             </svg>

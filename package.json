@@ -36,6 +36,7 @@
     "responsivevoice": "^0.4.1",
     "speech-synthesis": "^0.3.2",
     "unified": "^11.0.4",
+    "use-sound": "^4.0.3",
     "viem": "^2.9.16",
     "wagmi": "^2.5.19"
   },
